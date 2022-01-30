@@ -29,6 +29,6 @@ public class Main {
         // Print the graph
         System.out.println(myGraph.toString());
 
-
+        myGraph.bfs();
     }
 }

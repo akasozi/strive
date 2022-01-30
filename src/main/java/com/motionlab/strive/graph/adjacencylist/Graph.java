@@ -23,6 +23,31 @@ public class Graph {
        second.neighbours.add(first);
     }
 
+
+    private void bfsVisit(GraphNode node) {
+        LinkedList<GraphNode> queue = new LinkedList<>();
+        queue.add(node);
+        while (!queue.isEmpty()) {
+            GraphNode currentNode = queue.remove(0);
+            currentNode.isVisited = true;
+            System.out.print(currentNode.name + " ");
+            for (GraphNode neighbour: currentNode.neighbours) {
+                if (!neighbour.isVisited) {
+                    queue.add(neighbour);
+                    neighbour.isVisited = true;
+                }
+            }
+        }
+    }
+
+    public void bfs() {
+        for (GraphNode node: vertices) {
+            if (!node.isVisited) {
+                bfsVisit(node);
+            }
+        }
+    }
+
     public String toString() {
         StringBuilder s = new StringBuilder();
         for (int i = 0; i < vertices.size(); i++) {
