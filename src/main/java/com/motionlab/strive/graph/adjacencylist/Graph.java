@@ -24,6 +24,7 @@ public class Graph {
     }
 
 
+    // Internal
     private void bfsVisit(GraphNode node) {
         LinkedList<GraphNode> queue = new LinkedList<>();
         queue.add(node);
@@ -47,6 +48,32 @@ public class Graph {
             }
         }
     }
+
+    // DFS internal
+    private void dfsVisit(GraphNode node) {
+       Stack<GraphNode> stack =  new Stack<GraphNode>();
+       stack.push(node);
+
+       while (!stack.isEmpty()) {
+           GraphNode currentNode = stack.pop();
+           currentNode.isVisited = true;
+           System.out.print(currentNode.name + " ");
+           for(GraphNode neighbourNode: currentNode.neighbours) {
+               if (!neighbourNode.isVisited) {
+                   stack.push(neighbourNode);
+                   neighbourNode.isVisited = true;
+               }
+           }
+       }
+    }
+
+    public void dfs() {
+        for (GraphNode node: vertices) {
+            if (!node.isVisited)
+               dfsVisit(node);
+        }
+    }
+
 
     public String toString() {
         StringBuilder s = new StringBuilder();
