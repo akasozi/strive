@@ -29,6 +29,7 @@ public class Main {
         // print the edges
         System.out.println(graph.toString());
 
-        graph.bfs();
+        // graph.bfs();
+        graph.dfs();
     }
 }

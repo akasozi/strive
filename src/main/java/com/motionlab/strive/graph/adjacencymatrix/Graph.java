@@ -2,6 +2,7 @@ package com.motionlab.strive.graph.adjacencymatrix;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Stack;
 
 /**
  * @author Abu Bizibu
@@ -59,6 +60,31 @@ public class Graph {
         for(GraphNode node: vertices) {
             if (!node.isVisited) {
                 bfsVisit(node);
+            }
+        }
+    }
+
+    // DFS interval
+    private void dfsVisit(GraphNode node) {
+        Stack<GraphNode> stack = new Stack<GraphNode>();
+        stack.push(node);
+        while (!stack.isEmpty()) {
+            GraphNode currentNode = stack.pop();
+            currentNode.isVisited = true;
+            System.out.print(currentNode.name + " ");
+            for (GraphNode neighbourNode : getNeighbours(currentNode)) {
+                if (!neighbourNode.isVisited) {
+                    stack.push(neighbourNode);
+                    neighbourNode.isVisited=true;
+                }
+            }
+        }
+    }
+
+    public void dfs() {
+        for (GraphNode node: vertices) {
+            if (!node.isVisited) {
+                dfsVisit(node);
             }
         }
     }
